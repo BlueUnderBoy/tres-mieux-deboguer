@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2020_02_17_045806) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.string "body"
     t.integer "author_id"
+    t.string "body"
     t.integer "venue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
