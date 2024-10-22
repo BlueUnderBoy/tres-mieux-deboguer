@@ -53,13 +53,12 @@
     <th>Comment</th>
     <th>Posted</th>
   </tr>
-
   <% venue_comments = Comment.where({:venue_id => @the_venue.id}) %>
+  <%= venue_comments.length %>
   <% venue_comments.each do |comment| %>
   <tr>
     <td>
-      <%= @the_venue.id %>
-      <%= User.where({:id => (comment.author_id)}).at(0).username %>
+      <%= User.where({:id => comment.author_id}).at(0).username %>
     </td>
 
     <td>
@@ -70,21 +69,21 @@
       <%= comment.created_at %>
     </td>
   </tr>
-  
   <% end %>
+
 </table>
 
 <h3>Add a new comment</h3>
 
 <form action="/insert_comment_record" method="post">
   <label for="venue_id">Venue ID</label>
-  <input id="venue_id" type="text" value="<%= @the_venue.id %>" name="venue_id">
+  <input id="venue_id" type="text" name="venue_id" value="<%= @the_venue.id %>">
 
   <label for="author_id">Author ID</label>
   <input id="author_id" type="text" name="author_id">
 
-  <label for="comment">Comment</label>
-  <textarea id="comment" name="body" placeholder="Enter a comment..."></textarea>
+  <label for="body">Comment</label>
+  <textarea id="body" name="body" placeholder="Enter a comment..."></textarea>
 
   <button>Add comment</button>
 </form>

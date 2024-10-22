@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.new
-    comment.author_id = params.fetch("author_id")
-    comment.venue_id = params.fetch("venue_id")
-    comment.body = params.fetch("body")
-    comment.save
+    @comm = Comment.new
+    @comm.body = params.fetch("body")
+    @comm.author_id = params.fetch("author_id")
+    @comm.venue_id = params.fetch("venue_id")
+    @comm.save
     
-    redirect_to("/venues/#{comment.venue_id}")
+    redirect_to("/venues/#{@comm.venue_id}")
   end
 end
